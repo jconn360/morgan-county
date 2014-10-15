@@ -11,4 +11,5 @@ rest-framework-ember
 django-rest-swagger
 py-bcrypt
 pytz
+psycopg2
 

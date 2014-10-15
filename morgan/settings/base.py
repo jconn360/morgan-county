@@ -27,13 +27,26 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
     'rest_framework',
     'rest_framework_swagger',
+
+    'wagtail.wagtailcore',
+    'wagtail.wagtailadmin',
+    'wagtail.wagtaildocs',
+    'wagtail.wagtailsnippets',
+    'wagtail.wagtailusers',
+    'wagtail.wagtailimages',
+    'wagtail.wagtailembeds',
+    'wagtail.wagtailsearch',
+    'wagtail.wagtailredirects',
+    'wagtail.wagtailforms',
+    'compressor',
+    'taggit',
+    'modelcluster',
 
     # 'morgan.apps.',
 )
@@ -72,11 +85,13 @@ if not os.path.exists(VAR_ROOT):
 # Project URLS and media settings
 #============================================================================
 
+WAGTAIL_SITE_NAME = 'Morgan County'
+
 ROOT_URLCONF = 'morgan.urls'
 
-LOGIN_URL = '/login/'
+LOGIN_URL = 'wagtailadmin_login'
 LOGOUT_URL = '/logout/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/uploads/'
@@ -88,7 +103,14 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static'),
 )
 
-STATICFILES_FINDERS += (
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
 #============================================================================
@@ -100,7 +122,12 @@ TEMPLATE_DIRS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS += (
-    # 'django.core.context_processors.request',
+    'django.core.context_processors.request',
+)
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
 )
 
 #============================================================================
@@ -113,6 +140,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'wagtail.wagtailcore.middleware.SiteMiddleware',
+    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 )
 
 #============================================================================

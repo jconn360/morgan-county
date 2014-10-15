@@ -1,0 +1,5 @@
+*.egg-info
+*.pyc
+*/settings/local/*
+!*/settings/local/example/
+
