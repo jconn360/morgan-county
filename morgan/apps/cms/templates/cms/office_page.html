@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}{{self.seo_title|default:self.title}}{% endblock %}
+
+{% block content %}
+    {{self.body}}
+{% endblock %}
+
+{% block sidebar_menu %}
+    <div class="header">
+        <h1>{{self.get_parent.title}}</h1>
+        {% image self.get_parent.office.portrait max-200x300 as portrait %}
+        <img class="cameo" src="{{portrait.url}}" alt="{{self.get_parent.official}}">
+    </div>
+    <ul>
+        {% for page in self.get_prev_siblings %}
+            <li>
+                <a href="{% pageurl page %}">{{page.title}}</a>
+            </li>
+        {% endfor %}
+        <li>
+            <a class="active" href="{% pageurl self %}">{{self.title}}</a>
+        </li>
+        {% for page in self.get_next_siblings %}
+            <li>
+                <a href="{% pageurl page %}">{{page.title}}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+

@@ -48,7 +48,7 @@ INSTALLED_APPS = (
     'taggit',
     'modelcluster',
 
-    # 'morgan.apps.',
+    'morgan.apps.cms',
 )
 
 #============================================================================

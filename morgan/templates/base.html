@@ -1,39 +1,84 @@
-{% load i18n %}
+{% load compress static wagtailuserbar wagtailcore_tags menus %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>{% block full-title %}{% block title %}{% endblock %} &ndash; {{ project_name }}{% endblock %}</title>
+	<title>{% block title %}{% endblock %} &ndash; Morgan County, Missouri</title>
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<link rel="apple-touch-icon" href="{{ STATIC_URL }}assets/img/core/apple-touch-icon.png">
 	<link rel="shortcut icon" href="{{ STATIC_URL }}assets/img/core/favicon.png">
 
+  {% compress css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/animate.css">
+    <link rel="stylesheet" type="text/x-scss" href="{{ STATIC_URL }}css/morgan.scss">
+  {% endcompress %}
+
 	{% block extra_css %}{% endblock %}
 </head>
 
 <body class="{% block body-class %}{% endblock %}">
-	<header id="header">
-		{% block header %}
-		<h1><a href="/">{{ project_name }}</a></h1>
-		<nav>
-			<ul>
-				<li><a href="#">Navigation</a></li>
-			</ul>
-		</nav>
-		{% endblock %}
-	</header>
+  {% wagtailuserbar %}
 
-	<div id="content">
-		{% block content %}{% endblock %}
-	</div>
+  <div id="main">
+    {% block menu %}
+      {% get_site_root as site_root %}
+      {% main_menu parent=site_root calling_page=self %}
+    {% endblock %}
 
-	<footer id="footer">
-		<p>Copyright &copy; {% now 'Y' %}.</p>
-	</div>
+    {% block breadcrumbs %}
+        {% if self.get_ancestors|length > 1 %}
+            <div class="breadcrumbs">
+            {% for page in self.get_ancestors|slice:"1:" %}
+                <a href="{% pageurl page %}">{{page.title}}</a> / 
+            {% endfor %}
+            {{self.title}}
+            </div>
+        {% endif %}
+    {% endblock %}
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-{% block extra_js %}{% endblock %}
+    <div id="content" class="container-fluid">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+
+  <div id="sidebar">
+    <div id="inner-sidebar" class="container">
+
+      <div class="col-sm-12">
+        {% block sidebar_menu %}{% endblock %}
+      </div>
+
+      <div class="col-sm-12 office-hours">
+        <h4>Hours</h4>
+        <p>Monday through Friday<br>
+          8:00am to 4:30pm</p>
+        <h4>Closed</h4>
+        <ul>
+          <li>New Years Day</li>
+          <li>Martin Luther King Day</li>
+          <li>Presidents Day</li>
+          <li>Good Friday</li>
+          <li>Memorial Day</li>
+          <li>Independence Day</li>
+          <li>Labor Day</li>
+          <li>Columbus Day</li>
+          <li>Thanksgiving Day</li>
+          <li>Black Friday</li>
+          <li>Christmas Eve</li>
+          <li>Christmas Day</li>
+        </ul>
+      </div>
+      <div class="col-sm-12">
+        <ul>
+          <li><a href="/legal">Legal</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  {% block extra_js %}{% endblock %}
 </body>
 </html>

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}{{self.seo_title|default:self.title}}{% endblock %}
+
+{% block content %}
+    <div id="offices" class="row">
+        {% for page in self.get_children %}
+            <div class="col-xs-6 col-md-4 col-lg-3">
+                <a href="{% pageurl page %}">
+                    {% image page.office.portrait max-200x300 as portrait %}
+                    <img src="{{portrait.url}}" alt="{{page.office.official}}">
+                </a>
+                <div class="contact">
+                    <div class="contact-wrapper">
+                        <span class="name">{{page.office.name}} &bull; {{page.office.official}}</span>
+                        <span class="phone"><a href="tel:{{page.office.phone}}">{{page.office.phone}}</a></span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+

@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family:'Lato', sans-serif;
+    font-size: 18px;
+    color: #999;
+    font-family: 'Noto Serif', serif;
+}
+
+body > .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Libre Baskerville', sans-serif;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 34px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 22px;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+h6 {
+    font-size: 10px;
+}
+
+.breadcrumbs {
+    margin-left: 30px;
+    font-size: 12px;
+}
+
+#content {
+    margin-top: 30px;
+    padding: 30px;
+    min-height: 750px;
+}
+
+#offices img {
+    width: 100%;
+}
+
+#offices > div {
+  margin-top: 30px;
+}
+
+#offices .contact {
+    position: relative;
+}
+
+#offices .contact-wrapper {
+    position: absolute;
+    top: -75px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px;
+}
+
+#offices > div:hover .contact-wrapper {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+#offices .name, #offices .phone {
+    width: 100%;
+    display: inline-block;
+}
+
+#main {
+    width: 100%;
+    padding-left: 25%;
+}
+
+#sidebar {
+    background: #79a596;
+    width: 25%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    color: #ffffff;
+}
+
+#inner-sidebar {
+    width: 100%;
+
+    .header {
+        text-align: center;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    img {
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+}
+
+.office-hours ul {
+    padding-left: 0;
+    list-style: none;
+    text-align: left;
+}
+
+a, a:visited {
+    text-decoration:none;
+}
+
