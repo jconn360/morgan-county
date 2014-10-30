@@ -4,6 +4,8 @@ from morgan.settings import *   # pylint: disable=W0614,W0401
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
+COMPRESS_OFFLINE = True
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
