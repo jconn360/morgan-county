@@ -5,6 +5,7 @@ from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
 
 class HomePage(Page):
@@ -64,7 +65,7 @@ class Office(Page):
         FieldPanel('title'),
         FieldPanel('official'),
         FieldPanel('phone'),
-        FieldPanel('portrait'),
+        ImageChooserPanel('portrait'),
         FieldPanel('address'),
         FieldPanel('body'),
     ]
