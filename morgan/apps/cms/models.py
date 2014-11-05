@@ -50,6 +50,7 @@ class Office(Page):
         'wagtailimages.Image',
         verbose_name=_('Portrait'),
         null=True,
+        on_delete=models.SET_NULL,
     )
     address = models.TextField(
         _('Address'),
@@ -76,8 +77,6 @@ class OfficePage(Page):
         _('Page Body'),
         null=True,
     )
-    def test(self):
-        import ipdb;ipdb.set_trace()
 
     subpage_types = []
     content_panels = [

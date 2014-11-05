@@ -12,4 +12,5 @@ django-rest-swagger
 py-bcrypt
 pytz
 psycopg2
+markdown
 
