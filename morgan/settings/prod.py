@@ -6,6 +6,10 @@ TEMPLATE_DEBUG = DEBUG
 
 COMPRESS_OFFLINE = True
 
+ADMINS = (
+    ('Morgan County Dev', os.environ.get('EMAIL_DEV')),
+)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
