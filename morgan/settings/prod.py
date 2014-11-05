@@ -4,7 +4,7 @@ from morgan.settings import *   # pylint: disable=W0614,W0401
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
-COMPRESS_OFFLINE = True
+COMPRESS_OFFLINE = False
 
 ADMINS = (
     ('Morgan County Dev', os.environ.get('EMAIL_DEV')),
