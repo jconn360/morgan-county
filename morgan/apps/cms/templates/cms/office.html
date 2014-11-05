@@ -4,7 +4,7 @@
 {% block title %}{{self.seo_title|default:self.title}}{% endblock %}
 
 {% block content %}
-    {{self.body|markdown:"safe"}}
+    {{self.body|markdown}}
 {% endblock %}
 
 {% block sidebar_menu %}
