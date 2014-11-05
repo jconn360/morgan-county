@@ -4,21 +4,23 @@
 {% block title %}{{self.seo_title|default:self.title}}{% endblock %}
 
 {% block content %}
-    {{self.body|markdown}}
-{% endblock %}
 
-{% block sidebar_menu %}
-    <div class="header">
-        <h1>{{self.title}}</h1>
-        {% image self.portrait max-200x300 as portrait %}
-        <img class="cameo" src="{{portrait.url}}" alt="{{self.official}}">
-    </div>
-    <ul>
+  <div class="col-xs-12 col-md-3">
+    {% image self.portrait max-200x300 as portrait %}
+    <img class="cameo" src="{{portrait.url}}" alt="{{self.official}}">
+    <h4>{{self.official}}</h4>
+    <ul class="list-unstyled">
         {% for page in self.get_children %}
             <li>
                 <a href="{% pageurl page %}">{{page.officepage.title}}</a>
             </li>
         {% endfor %}
     </ul>
+  </div>
+
+  <div class="col-xs-12 col-md-9">
+    <h2>{{self.title}}</h2>
+    {{self.body|markdown}}
+  </div>
 {% endblock %}
 

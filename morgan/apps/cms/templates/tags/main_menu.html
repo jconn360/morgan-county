@@ -1,12 +1,20 @@
 {% load wagtailcore_tags %}
 
-<div class="navbar navbar-default navbar-top" role="navigation">
-    <div class="container-fluid">
-    <ul class="nav navbar-nav">
-        {% for item in menu_items %}
-            <li><a href="{% pageurl item %}">{{item.title}}</a></li>
-        {% endfor %}
-    </ul>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+   <div class="container">
+        <ul class="nav navbar-nav">
+            {% for item in menu_items %}
+                <li><a href="{% pageurl item %}">{{item.title}}</a></li>
+            {% endfor %}
+        </ul>
+        <form class="navbar-form navbar-right" role="search">
+            <div class="input-group">
+                <input type="text" placeholder="Find anything..." class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Search</button>
+                </span>
+            </div>
+        </form>
     </div>
 </div>
 

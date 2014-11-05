@@ -22,7 +22,7 @@
 <body class="{% block body-class %}{% endblock %}">
   {% wagtailuserbar %}
 
-  <div id="main">
+  <div id="main" class="container">
     {% block menu %}
       {% get_site_root as site_root %}
       {% main_menu parent=site_root calling_page=self %}
@@ -30,53 +30,43 @@
 
     {% block breadcrumbs %}
         {% if self.get_ancestors|length > 1 %}
-            <div class="breadcrumbs">
+            <ol class="breadcrumb">
             {% for page in self.get_ancestors|slice:"1:" %}
-                <a href="{% pageurl page %}">{{page.title}}</a> / 
+                <li>
+                    <a href="{% pageurl page %}">{{page.title}}</a>
+                </li>
             {% endfor %}
-            {{self.title}}
-            </div>
+            <li class="active">{{self.title}}</li>
+            </ol>
         {% endif %}
     {% endblock %}
 
-    <div id="content" class="container-fluid">
-      {% block content %}{% endblock %}
-    </div>
+    {% block content %}{% endblock %}
   </div>
 
-  <div id="sidebar">
-    <div id="inner-sidebar" class="container">
-
-      <div class="col-sm-12">
-        {% block sidebar_menu %}{% endblock %}
+  <div id="footer" class="container-fluid">
+      <div class="container">
+          <div class="col-sm-12 office-hours">
+            <h4>Hours</h4>
+            <p>Monday through Friday<br>
+              8:00am to 4:30pm</p>
+            <h4>Closed</h4>
+            <ul>
+              <li>New Years Day</li>
+              <li>Martin Luther King Day</li>
+              <li>Presidents Day</li>
+              <li>Good Friday</li>
+              <li>Memorial Day</li>
+              <li>Independence Day</li>
+              <li>Labor Day</li>
+              <li>Columbus Day</li>
+              <li>Thanksgiving Day</li>
+              <li>Black Friday</li>
+              <li>Christmas Eve</li>
+              <li>Christmas Day</li>
+            </ul>
+          </div>
       </div>
-
-      <div class="col-sm-12 office-hours">
-        <h4>Hours</h4>
-        <p>Monday through Friday<br>
-          8:00am to 4:30pm</p>
-        <h4>Closed</h4>
-        <ul>
-          <li>New Years Day</li>
-          <li>Martin Luther King Day</li>
-          <li>Presidents Day</li>
-          <li>Good Friday</li>
-          <li>Memorial Day</li>
-          <li>Independence Day</li>
-          <li>Labor Day</li>
-          <li>Columbus Day</li>
-          <li>Thanksgiving Day</li>
-          <li>Black Friday</li>
-          <li>Christmas Eve</li>
-          <li>Christmas Day</li>
-        </ul>
-      </div>
-      <div class="col-sm-12">
-        <ul>
-          <li><a href="/legal">Legal</a></li>
-        </ul>
-      </div>
-    </div>
   </div>
 
   {% block extra_js %}{% endblock %}
