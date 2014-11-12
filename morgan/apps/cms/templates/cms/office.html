@@ -24,7 +24,7 @@
     </ul>
 
     <h5>Address</h5>
-    <address>{{self.address.strip}}</address>
+    <address><a href="http://www.google.com/maps/place/{{self.address.strip|urlencode}}">{{self.address.strip}}</a></address>
 
     <h5>Phone</h5>
     <span class="phone">
