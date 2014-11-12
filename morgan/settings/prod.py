@@ -31,3 +31,12 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 EMAIL_HOST_PORT = 587
 EMAIL_USE_TLS = True
 
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
+        'URLS': [os.environ.get('ES_URL')],
+        'INDEX': os.environ.get('ES_INDEX'),
+        'TIMEOUT': 5,
+    }
+}
+
