@@ -79,18 +79,20 @@ ol.breadcrumb {
 
 #offices .contact-wrapper {
     position: absolute;
-    top: -75px;
+    top: -70px;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 10px;
 }
 
 #offices > div:hover .contact-wrapper {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
-#offices .name, #offices .phone {
+#offices .name {
+    color: #cacaca;
     width: 100%;
+    text-align: center;
     display: inline-block;
 }
 
