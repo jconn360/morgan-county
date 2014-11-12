@@ -8,7 +8,7 @@
   <div class="col-xs-12 col-md-3">
     {% image self.get_parent.office.portrait max-200x300 as portrait %}
     <img class="cameo" src="{{portrait.url}}" alt="{{self.get_parent.official}}">
-    <h4>{{self.get_parent.official}}</h4>
+    <h4>{{self.get_parent.office.official}}</h4>
     <ul class="list-unstyled">
         {% for page in self.get_parent.get_children %}
             <li{% if self.url == page.url %} class="active"{% endif %}>
