@@ -5,7 +5,11 @@
 
 {% block content %}
 
-  <div class="col-xs-12 col-md-3">
+  <div class="col-xs-12">
+    <h2>{{self.title}}</h2>
+  </div>
+
+  <div class="col-xs-12 col-sm-3">
     {% image self.portrait max-200x300 as portrait %}
     <img class="cameo" src="{{portrait.url}}" alt="{{self.official}}">
     <h4>{{self.official}}</h4>
@@ -16,10 +20,17 @@
             </li>
         {% endfor %}
     </ul>
+
+    <h5>Address</h5>
+    <address>{{self.address.strip}}</address>
+
+    <h5>Phone</h5>
+    <span class="phone">
+      {{self.phone}}
+    </span>
   </div>
 
-  <div class="col-xs-12 col-md-9">
-    <h2>{{self.title}}</h2>
+  <div class="col-xs-12 col-sm-9">
     {{self.body|markdown}}
   </div>
 {% endblock %}

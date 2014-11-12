@@ -20,7 +20,6 @@
 </head>
 
 <body class="{% block body-class %}{% endblock %}">
-  {% wagtailuserbar %}
 
   <div id="main" class="container">
     {% block menu %}
@@ -68,7 +67,10 @@
           </div>
       </div>
   </div>
-
+  {% compress js %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  {% endcompress %}
   {% block extra_js %}{% endblock %}
 </body>
 </html>
