@@ -130,6 +130,8 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 
+WAGTAILSEARCH_RESULTS_TEMPLATE = 'cms/search.html'
+
 #============================================================================
 # Middleware
 #============================================================================

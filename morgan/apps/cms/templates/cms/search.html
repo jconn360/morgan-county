@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+  <div class="col-xs-12">
+    <h2>Search Results{% if request.GET.q %} for {{ request.GET.q }}{% endif %}</h2>
+    <ul>
+      {% for result in search_results %}
+        <li>
+          <h4><a href="{% pageurl result.specific %}">{{ result.specific }}</a></h4>
+          {% if result.specific.search_description %}
+            {{ result.specific.search_description|safe }}
+          {% endif %}
+        </li>
+      {% empty %}
+        <li>No results found</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

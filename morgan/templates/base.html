@@ -3,7 +3,15 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>{% block title %}{% endblock %} &ndash; Morgan County, Missouri</title>
+	<title>
+    {% block title %}
+        {% if self %}
+            {{self.seo_title|default:self.title}}
+        {% else %}
+            Page Missing
+        {% endif %}
+    {% endblock %} &ndash; Morgan County, Missouri
+</title>
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">

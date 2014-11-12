@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext as _
 
+from wagtail.wagtailsearch import index
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailsnippets.models import register_snippet
@@ -71,6 +72,12 @@ class Office(Page):
         FieldPanel('body'),
     ]
 
+    search_fields = Page.search_fields + (
+        index.SearchField('official'),
+        index.SearchField('body'),
+    )
+
+
 class OfficePage(Page):
 
     body = models.TextField(
@@ -83,4 +90,8 @@ class OfficePage(Page):
         FieldPanel('title'),
         FieldPanel('body'),
     ]
+
+    search_fields = Page.search_fields + (
+        index.SearchField('body'),
+    )
 
