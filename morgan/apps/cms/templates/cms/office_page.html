@@ -10,7 +10,7 @@
   {% with self.get_parent.office as parent %}
   <div class="col-xs-12 col-md-3">
     {% image parent.office.portrait fill-200x200-c100 as portrait %}
-    <img class="cameo-portrait" src="{{portrait.url}}" alt="{{parent.official}}">
+    <img class="cameo-portrait center-block" src="{{portrait.url}}" alt="{{parent.official}}">
     <h4>{{parent.office.official}}</h4>
     <ul class="list-unstyled">
         {% for page in parent.get_children %}
