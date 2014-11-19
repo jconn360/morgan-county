@@ -1,0 +1,39 @@
+{% load markup wagtailcore_tags wagtailimages_tags %}
+
+{% image parent.office.portrait fill-200x200-c100 as portrait %}
+<img class="cameo-portrait center-block" src="{{portrait.url}}" alt="{{parent.official}}">
+<h4>{{parent.office.official}}</h4>
+<ul class="list-unstyled">
+    {% for page in parent.get_children %}
+        <li>
+            {% if current.url == page.url %}
+                {{page.title}}
+            {% else %}
+                <a href="{% pageurl page %}">{{page.title}}</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+<h5>Address</h5>
+<address><a href="http://www.google.com/maps/place/{{parent.address.strip|urlencode}}">{{parent.address.strip}}</a></address>
+
+<h5>Phone</h5>
+<span class="phone">
+  <a href="tel:{{parent.phone}}">{{parent.phone}}</a>
+</span>
+
+{% if parent.fax %}
+<h5>Fax</h5>
+<span class="fax">
+  <a href="tel:{{parent.fax}}">{{parent.fax}}</a>
+</span>
+{% endif %}
+
+{% if parent.email %}
+<h5>Email</h5>
+<span class="email">
+  <a href="mailto:{{parent.email}}">{{parent.email}}</a>
+</span>
+{% endif %}
+

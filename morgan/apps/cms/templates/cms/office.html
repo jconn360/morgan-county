@@ -7,29 +7,8 @@
     <h2>{{self.title}}</h2>
   </div>
 
-  <div class="col-xs-12 col-sm-3">
-    {% image self.portrait fill-200x200-c100 as portrait %}
-    <img class="cameo-portrait center-block" src="{{portrait.url}}" alt="{{self.official}}">
-    <h4>{{self.official}}</h4>
-    <ul class="list-unstyled">
-        {% for page in self.get_children %}
-            <li>
-                {% if self.url == page.url %}
-                    {{page.title}}
-                {% else %}
-                    <a href="{% pageurl page %}">{{page.title}}</a>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-
-    <h5>Address</h5>
-    <address><a href="http://www.google.com/maps/place/{{self.address.strip|urlencode}}">{{self.address.strip}}</a></address>
-
-    <h5>Phone</h5>
-    <span class="phone">
-      <a href="tel:{{self.phone}}">{{self.phone}}</a>
-    </span>
+  <div class="col-xs-12 col-md-3">
+    {% include 'includes/sidebar.html' with current=self parent=self %}
   </div>
 
   <div class="col-xs-12 col-sm-9">
