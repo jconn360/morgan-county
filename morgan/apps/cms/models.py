@@ -1,12 +1,14 @@
 from django.db import models
 from django.utils.translation import ugettext as _
 
+from modelcluster.fields import ParentalKey
 from wagtail.wagtailsearch import index
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailsnippets.models import register_snippet
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 
 
 class HomePage(Page):
@@ -62,7 +64,7 @@ class Office(Page):
         null=True,
     )
 
-    subpage_types = ['cms.OfficePage']
+    subpage_types = ['cms.OfficePage', 'cms.FormPage']
     content_panels = [
         FieldPanel('title'),
         FieldPanel('official'),
@@ -94,4 +96,33 @@ class OfficePage(Page):
     search_fields = Page.search_fields + (
         index.SearchField('body'),
     )
+
+
+class FormField(AbstractFormField):
+    page = ParentalKey('FormPage', related_name='form_fields')
+
+class FormPage(AbstractEmailForm):
+    body = models.TextField(_('Introduction'))
+    success = models.CharField(
+        _('Success Message'),
+        max_length=255,
+        help_text='This message is shown after the form is submitted.',
+    )
+
+    subpage_types = []
+    search_fields = Page.search_fields + (
+        index.SearchField('body'),
+    )
+
+FormPage.content_panels = [
+    FieldPanel('title'),
+    FieldPanel('body', classname="full"),
+    FieldPanel('success'),
+    MultiFieldPanel([
+        FieldPanel('to_address'),
+        FieldPanel('from_address'),
+        FieldPanel('subject'),
+    ], 'Email'),
+    InlinePanel(FormPage, 'form_fields', label='Form fields'),
+]
 

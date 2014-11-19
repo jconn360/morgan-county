@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load markup wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+  <div class="col-xs-12">
+    <h2>{{self.title}}</h2>
+  </div>
+
+  {% with self.get_parent.office as parent %}
+  <div class="col-xs-12 col-md-3">
+    {% image parent.office.portrait fill-200x200-c100 as portrait %}
+    <img class="cameo-portrait center-block" src="{{portrait.url}}" alt="{{parent.official}}">
+    <h4>{{parent.office.official}}</h4>
+    <ul class="list-unstyled">
+        {% for page in parent.get_children %}
+            <li>
+                {% if self.url == page.url %}
+                    {{page.title}}
+                {% else %}
+                    <a href="{% pageurl page %}">{{page.title}}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h5>Address</h5>
+    <address><a href="http://www.google.com/maps/place/{{parent.address.strip|urlencode}}">{{parent.address.strip}}</a></address>
+
+    <h5>Phone</h5>
+    <span class="phone">
+      <a href="tel:{{parent.phone}}">{{parent.phone}}</a>
+    </span>
+  </div>
+
+  <div class="col-xs-12 col-md-9">
+    {% block success %}
+      {{self.body|markdown}}
+
+      <form role="form" action="{% pageurl self %}" method="POST">
+        {% csrf_token %}
+        {% include "includes/form_field.html" with form=form %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    {% endblock %}
+  </div>
+  {% endwith %}
+{% endblock %}
+

@@ -1,0 +1,12 @@
+{% load help_text_as_placeholder %}
+
+{% for field in form %}
+  <div class="form-group {% if field.errors %}has-error{% endif %}">
+    <label for="{{field.id_for_label}}" class="control-label">
+      {{field.label}}
+      {{field.errors}}
+    </label>
+    {{field|help_text_as_placeholder}}
+  </div>
+{% endfor %}
+
