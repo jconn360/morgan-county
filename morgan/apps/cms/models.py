@@ -49,6 +49,20 @@ class Office(Page):
         max_length=15,
         null=True,
     )
+    email = models.CharField(
+        _('Email'),
+        help_text='(Optional)',
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+    fax = models.CharField(
+        _('Fax'),
+        help_text='(Optional)',
+        max_length=15,
+        null=True,
+        blank=True,
+    )
     portrait = models.ForeignKey(
         'wagtailimages.Image',
         verbose_name=_('Portrait'),
@@ -69,6 +83,8 @@ class Office(Page):
         FieldPanel('title'),
         FieldPanel('official'),
         FieldPanel('phone'),
+        FieldPanel('email'),
+        FieldPanel('fax'),
         ImageChooserPanel('portrait'),
         FieldPanel('address'),
         FieldPanel('body'),
