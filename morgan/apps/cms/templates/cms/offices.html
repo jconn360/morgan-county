@@ -4,17 +4,18 @@
 {% block content %}
     <div id="offices" class="row">
         {% for page in self.get_children %}
-            <div class="col-xs-6 col-md-4 col-lg-3">
+            <div class="col-xs-6 col-sm-3 col-lg-2">
                 <a href="{% pageurl page %}">
                     {% image page.office.portrait max-200x300 as portrait %}
                     <img src="{{portrait.url}}" alt="{{page.office.official}}">
-                </a>
-                <div class="contact">
-                    <div class="contact-wrapper">
-                        <span class="name"><strong>{{page.office.title}}</strong></span>
-                        <span class="name">{{page.office.official}}</span>
+
+                    <div class="contact">
+                        <div class="contact-wrapper">
+                            <span class="name"><strong>{{page.office.title}}</strong></span>
+                            <span class="name">{{page.office.official}}</span>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         {% endfor %}
     </div>
