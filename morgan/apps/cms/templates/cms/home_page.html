@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
+{% load wagtailimages_tags %}
 
-{% block content %}
-    <h2>{{self.title}}</h2>
-    {{self.video}}
+{% block content %}{% endblock %}
+
+{% block extra_js %}
+    <script>
+      $.backstretch([
+        {% for pic in self.image_slideshow.all %}
+          {% image pic.image max-1000x750 as img %}
+          '{{img.url}}',
+        {% endfor %}
+      ], {duration: 10000, fade: 1500});
+    </script>
 {% endblock %}
+

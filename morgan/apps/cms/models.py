@@ -11,21 +11,47 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 
 
-class HomePage(Page):
-
-    video = models.URLField(
-        _('Background Video'),
-        null=True
+class ImageSlideshow(models.Model):
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        verbose_name=_('Image'),
+        null=True,
+        on_delete=models.SET_NULL,
     )
+    attribution = models.CharField(
+        _('Attribution Link'),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+    author = models.CharField(
+        _('Author'),
+        max_length=50,
+        null=True,
+        blank=True,
+    )
+
+    panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('attribution'),
+        FieldPanel('author'),
+    ]
+
+
+class HomePageImageSlideshow(ImageSlideshow):
+    page = ParentalKey('cms.HomePage', related_name='image_slideshow')
+
+class HomePage(Page):
 
     def __unicode__(self):
         return self.title
 
     subpage_types = ['cms.Offices']
-    content_panels = [
-        FieldPanel('title'),
-        FieldPanel('video'),
-    ]
+
+HomePage.content_panels = [
+    FieldPanel('title'),
+    InlinePanel(HomePage, 'image_slideshow', label='Image Slideshow'),
+]
 
 class Offices(Page):
 

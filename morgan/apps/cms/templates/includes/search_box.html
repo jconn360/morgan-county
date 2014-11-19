@@ -1,7 +1,7 @@
 
 <form action="{% url 'wagtailsearch_search' %}" class="navbar-form navbar-right" role="search">
     <div class="input-group">
-        <input type="text" name="q"{% if query_string %} value="{{ query_string }}" {% endif %}placeholder="Search this site..." class="form-control">
+        <input type="text" name="q"{% if query_string %} value="{{ query_string }}"{% endif %} placeholder="Search this site..." class="form-control">
         <span class="input-group-btn">
             <button class="btn btn-default" type="submit">Go!</button>
         </span>
