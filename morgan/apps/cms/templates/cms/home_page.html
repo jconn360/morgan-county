@@ -19,7 +19,7 @@
       ];
       $('.backstretch').append('<span>');
       $(window).on('backstretch.show', function(e, instance) {
-        $('.backstretch span').text(captions[instance.index]);
+        $('.backstretch span').html(captions[instance.index]);
       });
     </script>
 {% endblock %}
