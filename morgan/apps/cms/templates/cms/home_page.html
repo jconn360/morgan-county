@@ -11,6 +11,16 @@
           '{{img.url}}',
         {% endfor %}
       ], {duration: 10000, fade: 1500});
+
+      var captions = [
+        {% for pic in self.image_slideshow.all %}
+        '<a href="{{pic.attribution}}">{{pic.author}}</a>',
+        {% endfor %}
+      ];
+      $('.backstretch').append('<span>');
+      $(window).on('backstretch.show', function(e, instance) {
+        $('.backstretch span').text(captions[instance.index]);
+      });
     </script>
 {% endblock %}
 
