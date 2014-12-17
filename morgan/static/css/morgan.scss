@@ -120,7 +120,11 @@ a, a:visited {
 }
 
 #footer {
-    background-color: $footerBackground;
-    color: #777777;
+  padding-top: 30px;
+  background:
+    linear-gradient(135deg, $footerBackground 22px, $footerBackgroundLight 22px, $footerBackgroundLight 24px, transparent 24px, transparent 67px, $footerBackgroundLight 67px, $footerBackgroundLight 69px, transparent 69px),
+    linear-gradient(225deg, $footerBackground 22px, $footerBackgroundLight 22px, $footerBackgroundLight 24px, transparent 24px, transparent 67px, $footerBackgroundLight 67px, $footerBackgroundLight 69px, transparent 69px)0 64px;
+  background-color: $footerBackground;
+  background-size: 64px 128px;
 }
 
