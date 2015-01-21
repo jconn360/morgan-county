@@ -132,7 +132,7 @@ a, a:visited {
     border: 2px solid white;
   }
 
-  ::-webkit-input-placeholder {
+  :-moz-placeholder, ::-moz-placeholder, :-ms-input-placeholder, ::-webkit-input-placeholder {
     color: $heroFontColor;
     font-weight: 600;
     text-shadow: 0px 0px 3px white;
