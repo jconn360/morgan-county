@@ -17,7 +17,9 @@
                     <li><a href="{% pageurl item %}">{{item.title}}</a></li>
                 {% endfor %}
             </ul>
-            {% include 'includes/search_box.html' with query_string=query_string only %}
+            {% if calling_page.slug != 'home' %}
+              {% include 'includes/search_box.html' with query_string=query_string only %}
+            {% endif %}
         </div>
     </div>
 </div>
