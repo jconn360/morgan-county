@@ -1,7 +1,20 @@
 {% extends 'base.html' %}
-{% load wagtailimages_tags %}
+{% load wagtailimages_tags wagtailcore_tags %}
 
-{% block content %}{% endblock %}
+
+
+{% block content %}
+  <div class="home-page-search">
+    <form action="{% url 'wagtailsearch_search' %}" role="search">
+        <div class="input-group">
+            <input type="text" name="q" placeholder="Search this site..." class="form-control">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Go!</button>
+            </span>
+        </div>
+    </form>
+  </div>
+{% endblock %}
 
 {% block extra_js %}
     <script>
@@ -17,10 +30,14 @@
         '<a href="{{pic.attribution}}">{{pic.author}}</a>',
         {% endfor %}
       ];
-      $('.backstretch').append('<span>');
+      $('#footer').append('<span class="caption"></span>');
       $(window).on('backstretch.show', function(e, instance) {
-        $('.backstretch span').html(captions[instance.index]);
+        $('#footer span.caption').html(captions[instance.index]);
       });
+      window.onresize = function() {
+        var height = $('#main').height();
+        $('.home-page-search').css('padding-top', (height / 2) - 50);
+      }();
     </script>
 {% endblock %}
 
