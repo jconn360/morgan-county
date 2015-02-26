@@ -46,12 +46,29 @@ class HomePage(Page):
     def __unicode__(self):
         return self.title
 
-    subpage_types = ['cms.Offices']
+    subpage_types = ['cms.Offices', 'cms.ContentPage']
 
 HomePage.content_panels = [
     FieldPanel('title'),
     InlinePanel(HomePage, 'image_slideshow', label='Image Slideshow'),
 ]
+
+class ContentPage(Page):
+
+    body = models.TextField(
+        _('Page Body'),
+        null=True,
+    )
+
+    subpage_types = []
+    content_panels = [
+        FieldPanel('title'),
+        FieldPanel('body'),
+    ]
+
+    search_fields = Page.search_fields + (
+        index.SearchField('body'),
+    )
 
 class Offices(Page):
 
