@@ -57,11 +57,21 @@ ol.breadcrumb {
     min-height: 750px;
 
     .navbar {
-        background: rgba(0, 0, 0, 0.5);
+        background:rgb(0,0,0);
+        background: transparent\9;
+        background:rgba(0,0,0,0.5);
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);
+        zoom: 1;
         padding: 10px;
+
+        &:nth-child(n) {
+            filter: none;
+        }
+
         .nav li a {
             color: $menuFontColor;
         }
+
     }
 
 }
