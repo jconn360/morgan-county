@@ -34,10 +34,11 @@
       $(window).on('backstretch.show', function(e, instance) {
         $('#footer span.caption').html(captions[instance.index]);
       });
-      window.onresize = function() {
+      var resize = function() {
         var height = $('#main').height();
         $('.home-page-search').css('padding-top', (height / 2) - 50);
-      }();
+      };
+      $(window).resize(resize());
     </script>
 {% endblock %}
 
