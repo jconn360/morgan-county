@@ -92,12 +92,26 @@ ol.breadcrumb {
     position: absolute;
     bottom: 0px;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
     padding: 10px;
+    background:rgb(0,0,0);
+    background: transparent\9;
+    background:rgba(0,0,0,0.5);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);
+    zoom: 1;
+    &:nth-child(n) {
+        filter: none;
+    }
 }
 
 #offices > div:hover .contact-wrapper {
-    background-color: rgba(0, 0, 0, 0.7);
+    background:rgb(0,0,0);
+    background: transparent\9;
+    background:rgba(0,0,0,0.7);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);
+    zoom: 1;
+    &:nth-child(n) {
+        filter: none;
+    }
 }
 
 #offices .name {
@@ -135,7 +149,14 @@ a, a:visited {
   input {
     font-style: italic;
     border: 2px solid white;
-    background-color: rgba(255, 255, 255, 0.6);
+    background:rgb(255,255,255);
+    background: transparent\9;
+    background:rgba(255,255,255,0.6);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff,endColorstr=#99ffffff);
+    zoom: 1;
+  }
+  &:nth-child(n) {
+      filter: none;
   }
 
   button {
