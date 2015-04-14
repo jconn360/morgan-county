@@ -24,7 +24,7 @@
           {% image pic.image max-1000x750 as img %}
           '{{img.url}}',
         {% endfor %}
-      ], {duration: 10000, fade: 1500});
+      ], {duration: 6000, fade: 1500});
 
       var captions = [
         {% for pic in self.image_slideshow.all %}
