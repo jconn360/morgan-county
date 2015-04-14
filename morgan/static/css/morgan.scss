@@ -136,6 +136,16 @@ a, a:visited {
 }
 
 .home-page-search {
+
+  .welcome {
+    color: $menuFontColor;
+    font-size: 32px;
+    font-style: italic;
+    text-shadow: 0px 0px 3px $bodyFontColor;
+    text-align: center;
+    width: 100%;
+  }
+
   padding-top: 25%;
   * {
     height: 75px;
